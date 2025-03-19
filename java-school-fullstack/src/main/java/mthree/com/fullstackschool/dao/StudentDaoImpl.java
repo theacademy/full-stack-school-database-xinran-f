@@ -71,7 +71,7 @@ public class StudentDaoImpl implements StudentDao {
         //YOUR CODE STARTS HERE
         final String sql = "UPDATE student SET "
                 + "fName = ?, "
-                + "lName = ?, "
+                + "lName = ? "
                 + "WHERE sid = ?;";
 
         jdbcTemplate.update(sql,
@@ -90,23 +90,19 @@ public class StudentDaoImpl implements StudentDao {
         //YOUR CODE ENDS HERE
     }
 
-    // TODO
     @Override
     public void addStudentToCourse(int studentId, int courseId) {
         //YOUR CODE STARTS HERE
-
-
-
+        String sql = "INSERT INTO Student_Course (student_id, course_id) VALUES (?, ?)";
+        jdbcTemplate.update(sql, studentId, courseId);
         //YOUR CODE ENDS HERE
     }
 
-    // TODO
     @Override
     public void deleteStudentFromCourse(int studentId, int courseId) {
         //YOUR CODE STARTS HERE
-
-
-
+        String sql = "DELETE FROM Student_Course WHERE student_id = ? AND course_id = ?";
+        jdbcTemplate.update(sql, studentId, courseId);
         //YOUR CODE ENDS HERE
     }
 }
