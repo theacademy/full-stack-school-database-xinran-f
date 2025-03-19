@@ -87,13 +87,11 @@ public class CourseDaoImpl implements CourseDao {
         //YOUR CODE ENDS HERE
     }
 
-
-    // TODO
     @Override
     public void deleteAllStudentsFromCourse(int courseId) {
         //YOUR CODE STARTS HERE
-
-
+        String sql = "DELETE FROM course_student WHERE course_id = ?";
+        jdbcTemplate.update(sql, courseId);
         //YOUR CODE ENDS HERE
     }
 }
