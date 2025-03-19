@@ -24,7 +24,7 @@ public class TeacherDaoImpl implements TeacherDao {
     @Override
     public Teacher createNewTeacher(Teacher teacher) {
         //YOUR CODE STARTS HERE
-        final String sql = "INSERT INTO teacher(fName, lName, dept) VALUES(?,?,?);";
+        final String sql = "INSERT INTO teacher(tFName, tLName, dept) VALUES(?,?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update((Connection conn) -> {
@@ -47,7 +47,7 @@ public class TeacherDaoImpl implements TeacherDao {
     @Override
     public List<Teacher> getAllTeachers() {
         //YOUR CODE STARTS HERE
-        final String sql = "SELECT tid, fName, lName, dept FROM teacher;";
+        final String sql = "SELECT tid, tFName, tLName, dept FROM teacher;";
         return jdbcTemplate.query(sql, new TeacherMapper());
         //YOUR CODE ENDS HERE
     }
@@ -55,7 +55,7 @@ public class TeacherDaoImpl implements TeacherDao {
     @Override
     public Teacher findTeacherById(int id) {
         //YOUR CODE STARTS HERE
-        final String sql = "SELECT tid, fName, lName, dept "
+        final String sql = "SELECT tid, tFName, tLName, dept "
                 + "FROM teacher WHERE tid = ?;";
 
         return jdbcTemplate.queryForObject(sql, new TeacherMapper(), id);
@@ -66,9 +66,9 @@ public class TeacherDaoImpl implements TeacherDao {
     public void updateTeacher(Teacher t) {
         //YOUR CODE STARTS HERE
         final String sql = "UPDATE teacher SET "
-                + "fName = ?, "
-                + "lName = ?, "
-                + "dept = ?, "
+                + "tFName = ?, "
+                + "tLName = ?, "
+                + "dept = ? "
                 + "WHERE tid = ?;";
 
         jdbcTemplate.update(sql,
