@@ -29,17 +29,16 @@ public class CourseServiceImpl implements CourseServiceInterface {
 
     public Course getCourseById(int id) {
         //YOUR CODE STARTS HERE
-        Course course = new Course();
+        Course course;
 
         try {
             course = courseDao.findCourseById(id);
         } catch (DataAccessException e) {
-            // TODO: Not sure
             String courseNotFound = "Course Not Found";
+            course = new Course();
             course.setCourseName(courseNotFound);
             course.setCourseDesc(courseNotFound);
             courseDao.createNewCourse(course);
-            return course;
         }
 
         return course;
