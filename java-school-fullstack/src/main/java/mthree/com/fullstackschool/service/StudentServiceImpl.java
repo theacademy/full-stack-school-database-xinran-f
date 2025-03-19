@@ -82,7 +82,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
         //YOUR CODE STARTS HERE
 
         studentDao.deleteStudentFromCourse(studentId, courseId);
-        
+
         //YOUR CODE ENDS HERE
     }
 

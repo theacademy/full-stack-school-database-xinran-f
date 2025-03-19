@@ -34,11 +34,11 @@ public class CourseServiceImpl implements CourseServiceInterface {
         try {
             course = courseDao.findCourseById(id);
         } catch (DataAccessException e) {
-            String courseNotFound = "Course Not Found";
             course = new Course();
-            course.setCourseName(courseNotFound);
-            course.setCourseDesc(courseNotFound);
-            courseDao.createNewCourse(course);
+            course.setCourseName("Course Not Found");
+            course.setCourseDesc("Course Not Found");
+            // TODO: Not Sure
+            // courseDao.createNewCourse(course);
         }
 
         return course;
