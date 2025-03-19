@@ -37,8 +37,6 @@ public class CourseServiceImpl implements CourseServiceInterface {
             course = new Course();
             course.setCourseName("Course Not Found");
             course.setCourseDesc("Course Not Found");
-            // TODO: Not Sure
-            // courseDao.createNewCourse(course);
         }
 
         return course;

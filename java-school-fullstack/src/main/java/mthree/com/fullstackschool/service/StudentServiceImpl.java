@@ -1,5 +1,6 @@
 package mthree.com.fullstackschool.service;
 
+import mthree.com.fullstackschool.dao.CourseDao;
 import mthree.com.fullstackschool.dao.StudentDao;
 import mthree.com.fullstackschool.model.Course;
 import mthree.com.fullstackschool.model.Student;
@@ -13,9 +14,16 @@ public class StudentServiceImpl implements StudentServiceInterface {
 
     //YOUR CODE STARTS HERE
     private StudentDao studentDao;
+    private CourseDao courseDao;
 
+    @Autowired
     public StudentServiceImpl(StudentDao studentDao) {
         this.studentDao = studentDao;
+    }
+
+    public StudentServiceImpl(StudentDao studentDao, CourseDao courseDao) {
+        this.studentDao = studentDao;
+        this.courseDao = courseDao;
     }
     //YOUR CODE ENDS HERE
 
@@ -74,28 +82,45 @@ public class StudentServiceImpl implements StudentServiceInterface {
         //YOUR CODE ENDS HERE
     }
 
-    // TODO
-    // If student first name is equal to "Student Not Found", print a line to server console: "Student not found"
-    // else if the course name is equal to "Course Not Found", print a line to server console: "Course not found"
-    // else print a line to server console: "Student: <STUDENT ID> deleted from course: <COURSE ID>"
     public void deleteStudentFromCourse(int studentId, int courseId) {
         //YOUR CODE STARTS HERE
+        Student student = studentDao.findStudentById(studentId);
+        Course course = courseDao.findCourseById(courseId);
+
+        if (student.getStudentFirstName().equals("Student Not Found")) {
+            System.out.println("Student Not Found");
+            return;
+        } else if (course.getCourseName().equals("Course Not Found")) {
+            System.out.println("Course Not Found");
+            return;
+        }
 
         studentDao.deleteStudentFromCourse(studentId, courseId);
 
+        System.out.printf("Student: <%d> deleted from course: <%d>\n", studentId, courseId);
         //YOUR CODE ENDS HERE
     }
 
-    // TODO
-    // If student first name is equal to "Student Not Found", print a line to the server console "Student not found"
-    // else if the course name is equal to "Course Not Found", print a line to the server console "Course not found"
-    // else print a line to the server console: "Student: <STUDENT ID> added to course: <COURSE ID>"
-    // or catch exception print line to server console: "Student: <STUDENT ID> already enrolled in course: <COURSE ID>"
     public void addStudentToCourse(int studentId, int courseId) {
         //YOUR CODE STARTS HERE
+        try {
+            Student student = studentDao.findStudentById(studentId);
+            Course course = courseDao.findCourseById(courseId);
 
-        studentDao.addStudentToCourse(studentId, courseId);
+            if (student.getStudentFirstName().equals("Student Not Found")) {
+                System.out.println("Student Not Found");
+                return;
+            } else if (course.getCourseName().equals("Course Not Found")) {
+                System.out.println("Course Not Found");
+                return;
+            }
 
+            studentDao.addStudentToCourse(studentId, courseId);
+
+            System.out.printf("Student: <%d> added to course: <%d>\n", studentId, courseId);
+        } catch (Exception e) {
+            System.out.printf("Student: <%d> already enrolled in course: <%d>\n", studentId, courseId);
+        }
         //YOUR CODE ENDS HERE
     }
 }
