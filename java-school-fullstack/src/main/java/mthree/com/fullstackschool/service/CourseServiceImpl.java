@@ -13,13 +13,10 @@ import java.util.List;
 public class CourseServiceImpl implements CourseServiceInterface {
 
     //YOUR CODE STARTS HERE
-    CourseDao courseDao;
-    StudentDao studentDao;
-    TeacherDao teacherDao;
+    private CourseDao courseDao;
 
-    // TODO: other daos to be added later
     @Autowired
-    public void setCourseDao(CourseDao courseDao) {
+    public CourseServiceImpl(CourseDao courseDao) {
         this.courseDao = courseDao;
     }
     //YOUR CODE ENDS HERE
@@ -29,7 +26,7 @@ public class CourseServiceImpl implements CourseServiceInterface {
         return courseDao.getAllCourses();
         //YOUR CODE ENDS HERE
     }
-    
+
     public Course getCourseById(int id) {
         //YOUR CODE STARTS HERE
         Course course = new Course();
