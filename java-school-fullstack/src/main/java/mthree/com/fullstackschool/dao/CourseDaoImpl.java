@@ -35,7 +35,6 @@ public class CourseDaoImpl implements CourseDao {
             statement.setString(2, course.getCourseDesc());
             statement.setString(3, String.valueOf(course.getTeacherId()));
             return statement;
-
         }, keyHolder);
 
         course.setCourseId(keyHolder.getKey().intValue());

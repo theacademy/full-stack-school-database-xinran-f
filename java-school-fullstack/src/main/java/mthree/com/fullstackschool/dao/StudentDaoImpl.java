@@ -40,7 +40,6 @@ public class StudentDaoImpl implements StudentDao {
             statement.setString(1, String.valueOf(student.getStudentFirstName()));
             statement.setString(2, String.valueOf(student.getStudentLastName()));
             return statement;
-
         }, keyHolder);
 
         student.setStudentId(keyHolder.getKey().intValue());
