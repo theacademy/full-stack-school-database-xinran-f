@@ -47,7 +47,7 @@ public class CourseDaoImpl implements CourseDao {
     @Override
     public List<Course> getAllCourses() {
         //YOUR CODE STARTS HERE
-        final String sql = "SELECT cid, courseCode, CourseDesc, teacherId;";
+        final String sql = "SELECT cid, courseCode, CourseDesc, teacherId FROM course;";
         return jdbcTemplate.query(sql, new CourseMapper());
         //YOUR CODE ENDS HERE
     }
