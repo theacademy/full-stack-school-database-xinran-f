@@ -21,8 +21,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
         this.studentDao = studentDao;
     }
 
-    public StudentServiceImpl(StudentDao studentDao, CourseDao courseDao) {
-        this.studentDao = studentDao;
+    public StudentServiceImpl(CourseDao courseDao) {
         this.courseDao = courseDao;
     }
     //YOUR CODE ENDS HERE
